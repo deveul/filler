@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:51:59 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 18:00:00 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/07 20:28:23 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,29 @@ void	ft_actualize_score(t_env *env)
 	SDL_RenderCopy(env->ren, env->originalscore, NULL, &env->rectoriscore);
 }
 
+static void	ft_play_one_move(t_env *env, int *ret)
+{
+	SDL_SetRenderTarget(env->ren, env->txt);
+	*(ret) = ft_next_move(env);
+	SDL_SetRenderTarget(env->ren, NULL);
+	SDL_RenderCopy(env->ren, env->txt, NULL, NULL);
+	SDL_SetRenderTarget(env->ren, env->pc);
+	ft_draw_piece(env);
+	SDL_SetRenderTarget(env->ren, NULL);
+	SDL_RenderCopy(env->ren, env->titlep1, NULL, &env->rectnamep1);
+	SDL_RenderCopy(env->ren, env->titlep2, NULL, &env->rectnamep2);
+	SDL_RenderCopy(env->ren, env->titlepiece, NULL, &env->rectpiece);
+	SDL_RenderCopy(env->ren, env->titlescore, NULL, &env->rectscore);
+	ft_actualize_score(env);
+	SDL_RenderPresent(env->ren);
+}
+
 int			ft_handle_event(t_env *env)
 {
 	int		ret;
+	int		i;
 
+	ret = 1;
 	if (env->event.type == SDL_QUIT)
 		return (-2);
 	if (env->event.type == SDL_KEYDOWN)
@@ -63,6 +82,34 @@ int			ft_handle_event(t_env *env)
 			SDL_RenderCopy(env->ren, env->titlescore, NULL, &env->rectscore);
 			ft_actualize_score(env);
 			SDL_RenderPresent(env->ren);
+		}
+		if (env->event.key.keysym.scancode == SDL_SCANCODE_3)
+		{
+			while (ret > 0)
+				ft_play_one_move(env, &ret);
+			return (ret);
+		}
+		if (env->event.key.keysym.scancode == SDL_SCANCODE_2)
+		{
+			while (ret > 0)
+			{
+				i = 0;
+				while (i < 3000000)
+					i++;
+				ft_play_one_move(env, &ret);
+			}
+			return (ret);
+		}
+		if (env->event.key.keysym.scancode == SDL_SCANCODE_1)
+		{
+			while (ret > 0)
+			{
+				i = 0;
+				while (i < 10000000)
+					i++;
+				ft_play_one_move(env, &ret);
+			}
+			return (ret);
 		}
 	}
 	return (1);
