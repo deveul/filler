@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 17:23:57 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:44:55 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		ft_init_filler(t_filler *f)
 	f->mine = 0;
 	f->l = 0;
 	f->c = 0;
+	f->oppocpt = 0;
 }
 
 static void		ft_free_piece(t_piece *p)

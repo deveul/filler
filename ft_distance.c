@@ -6,11 +6,12 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 20:35:55 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 17:53:43 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:42:49 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include <fcntl.h>
 
 static int	ft_calculate_tmp(t_point *pts, int cpt, t_point ij, t_sort pt)
 {
@@ -33,11 +34,7 @@ static int	ft_measure(t_point *pts, t_sort pt, t_point ij, int oppocpt)
 	int		cpt;
 	int		ret;
 	int		tmp;
-	int		x;
-	int		y;
 
-	x = pt.x;
-	y = pt.y;
 	cpt = 0;
 	while (cpt < oppocpt)
 	{

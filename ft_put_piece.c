@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:57:29 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 17:53:45 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:53:06 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,27 @@ int				ft_put_piece(t_filler *f, t_piece *p)
 {
 	t_sort		sort;
 	t_point		*pts;
+	int			i;
+	int			j;
 
 	pts = NULL;
 	sort.trigger = 0;
 	sort.current = -1;
 	sort.y = 0;
+	i = 0;
+	f->prev_cpt = f->oppocpt;
+	f->oppocpt = 0;
+	while (i < f->l)
+	{
+		j = 0;
+		while (j < f->c)
+		{
+			if (f->maps[i][j] == f->other)
+				f->oppocpt++;
+			j++;
+		}
+		i++;
+	}
 	if (!(pts = ft_memalloc(sizeof(t_point) * f->oppocpt)))
 		return (-1);
 	ft_get_opponent(f, pts);

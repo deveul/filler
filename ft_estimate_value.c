@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 11:53:05 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 17:53:47 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:59:27 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,12 @@ int				ft_estimate_value(t_filler *f, t_piece *p, \
 {
 	int		cp;
 	int		distance;
-	int		i;
-	int		j;
 
 	distance = 0;
 	if ((cp = ft_contact_point(f, p, pt)) != 0)
 		return (cp);
-	f->oppocpt = 0;
-	i = -1;
-	while (++i < f->l)
-	{
-		j = -1;
-		while (++j < f->c)
-		{
-			if (f->maps[i][j] == f->other)
-				f->oppocpt++;
-		}
-	}
+	if (f->prev_cpt == f->oppocpt)
+		return (-1);
 	distance = ft_distance(f, p, pts, pt);
 	return (distance);
 }
