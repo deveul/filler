@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 11:53:05 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 19:59:27 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 13:00:06 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int				ft_estimate_value(t_filler *f, t_piece *p, \
 		return (cp);
 	if (f->prev_cpt == f->oppocpt)
 		return (-1);
+	return (-1);
 	distance = ft_distance(f, p, pts, pt);
 	return (distance);
 }

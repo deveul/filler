@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:21:25 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 18:06:28 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 11:44:30 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct	s_env
 	int				**piece;
 }				t_env;
 
+int				ft_quit_all(t_env *env);
+int				ft_quit_all_neg(t_env *env);
 int				ft_first_parsing(t_env *env, int *is_running);
 int				ft_init_env(t_env *env, int *is_running);
 int				ft_handle_event(t_env *env);
@@ -86,5 +88,6 @@ void			ft_pick_color(t_env *env, int  r, int g, int b);
 void			ft_draw_piece(t_env *env);
 void			send_rect_to_fill(t_env *env, int i, int j, int color);
 void			ft_actualize_score(t_env *env);
+void			ft_print_winner(t_env *env);
 
 #endif

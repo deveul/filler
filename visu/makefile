@@ -6,7 +6,7 @@
 #    By: vrenaudi <urenaudi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/26 14:25:25 by vrenaudi          #+#    #+#              #
-#    Updated: 2018/11/07 15:55:50 by vrenaudi         ###   ########.fr        #
+#    Updated: 2018/11/08 11:24:15 by vrenaudi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS = main.c \
 	   ft_get_current_piece.c \
 	   useful.c \
 	   ft_next_move.c \
-	   ft_draw_piece.c
+	   ft_draw_piece.c \
+	   ft_draw_winner.c
 
 OBJ = $(SRCS:.c=.o)
 
