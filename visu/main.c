@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 13:41:50 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 12:37:37 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 15:45:29 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ static int	ft_init_visu(t_env *env, int *fd, int *is_running)
 		return (-1);
 	ft_pick_color(env, 255, 255, 255);
 	return (1);
+}
+
+static void	ft_init_string_and_piece(t_env *env)
+{
+	env->p1 = NULL;
+	env->p2 = NULL;
+	env->namep1 = NULL;
+	env->namep2 = NULL;
+	env->score = NULL;
+	env->winner = NULL;
+	env->p.y = -1;
+	env->p.x = -1;
 }
 
 static int	ft_run_game(t_env *env, int *is_running)
@@ -68,6 +80,7 @@ int			main(void)
 
 	if (ft_init_visu(&env, &fd, &is_running) == -1)
 		return (-1);
+	ft_init_string_and_piece(&env);
 	while (is_running)
 	{
 		if (is_running == 1)

@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:27:31 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 11:09:09 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 14:07:39 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 static void	ft_init_var(t_env *env, int *i)
 {
 	*(i) = 1;
-	env->p1 = NULL;
-	env->p2 = NULL;
 	env->width_map = -1;
 	env->height_map = -1;
 }

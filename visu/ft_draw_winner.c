@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 11:22:02 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 11:28:50 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 15:53:58 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void		ft_print_winner2(t_env *env)
 	env->rectwinner.x = WIDTH * 0.2;
 	env->rectwinner.y = HEIGHT * 1.3;
 	SDL_FreeSurface(env->surf);
+	env->surf = NULL;
 	SDL_RenderCopy(env->ren, env->txtwinner, NULL, &env->rectwinner);
 	ft_actualize_score(env);
 	SDL_RenderPresent(env->ren);

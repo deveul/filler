@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 14:57:30 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 17:14:07 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 15:21:47 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int			ft_next_move(t_env *env)
 	int		ret;
 	char	*line;
 
+	ft_free_piece(env);
 	is_running = 1;
 	while (is_running)
 	{

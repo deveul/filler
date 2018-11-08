@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:16:18 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 12:04:36 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 15:54:23 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,39 +47,25 @@ void			ft_actualize_score(t_env *env)
 	ft_pick_color(env, 53, 75, 96);
 	env->score = ft_strjoin("P1 : ", ft_itoa(env->cptp2));
 	env->surf = TTF_RenderText_Blended(env->font, env->score, env->color);
+	ft_strdel(&env->score);
 	env->originalscore = SDL_CreateTextureFromSurface(env->ren, env->surf);
 	env->rectoriscore.w = env->surf->w;
 	env->rectoriscore.h = env->surf->h;
 	env->rectoriscore.x = WIDTH * 1.2;
 	env->rectoriscore.y = HEIGHT * 0.85;
 	SDL_FreeSurface(env->surf);
+	env->surf = NULL;
 	SDL_RenderCopy(env->ren, env->originalscore, NULL, &env->rectoriscore);
 	ft_pick_color(env, 233, 139, 57);
 	env->score = ft_strjoin("P2 : ", ft_itoa(env->cptp1));
 	env->surf = TTF_RenderText_Blended(env->font, env->score, env->color);
+	ft_strdel(&env->score);
 	env->originalscore = SDL_CreateTextureFromSurface(env->ren, env->surf);
 	env->rectoriscore.w = env->surf->w;
 	env->rectoriscore.h = env->surf->h;
 	env->rectoriscore.x = WIDTH * 1.2;
 	env->rectoriscore.y = HEIGHT * 0.9;
 	SDL_FreeSurface(env->surf);
+	env->surf = NULL;
 	SDL_RenderCopy(env->ren, env->originalscore, NULL, &env->rectoriscore);
-}
-
-int				ft_quit_all_neg(t_env *env)
-{
-	TTF_CloseFont(env->font);
-	SDL_DestroyRenderer(env->ren);
-	SDL_DestroyWindow(env->win);
-	SDL_Quit();
-	return (-1);
-}
-
-int				ft_quit_all(t_env *env)
-{
-	TTF_CloseFont(env->font);
-	SDL_DestroyRenderer(env->ren);
-	SDL_DestroyWindow(env->win);
-	SDL_Quit();
-	return (0);
 }

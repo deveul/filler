@@ -6,13 +6,13 @@
 #    By: vrenaudi <urenaudi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/26 14:25:25 by vrenaudi          #+#    #+#              #
-#    Updated: 2018/11/08 11:24:15 by vrenaudi         ###   ########.fr        #
+#    Updated: 2018/11/08 15:58:32 by vrenaudi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 CFLAGS += $(shell sdl2-config --cflags)
 
@@ -29,7 +29,8 @@ SRCS = main.c \
 	   useful.c \
 	   ft_next_move.c \
 	   ft_draw_piece.c \
-	   ft_draw_winner.c
+	   ft_draw_winner.c \
+	   ft_free_and_quit.c
 
 OBJ = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 11:29:57 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 11:39:20 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 16:01:26 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ static void	ft_original_draw2(t_env *env)
 	SDL_RenderCopy(env->ren, env->titlepiece, NULL, &env->rectpiece);
 	env->surf = TTF_RenderText_Blended(env->font, "Score :", env->color);
 	env->titlescore = SDL_CreateTextureFromSurface(env->ren, env->surf);
-	SDL_FreeSurface(env->surf);
 	env->rectscore.w = env->surf->w;
 	env->rectscore.h = env->surf->h;
+	SDL_FreeSurface(env->surf);
 	ft_original_draw3(env);
 }
 
@@ -115,6 +115,7 @@ void		ft_original_draw(t_env *env)
 	SDL_SetRenderTarget(env->ren, NULL);
 	SDL_RenderCopy(env->ren, env->pc, NULL, NULL);
 	env->namep1 = ft_strjoin("P1 : ", ft_strtoupper(env->p1));
+	ft_strdel(&env->p1);
 	ft_pick_color(env, 53, 75, 96);
 	env->surf = TTF_RenderText_Blended(env->font, env->namep1, env->color);
 	env->titlep1 = SDL_CreateTextureFromSurface(env->ren, env->surf);
@@ -125,6 +126,7 @@ void		ft_original_draw(t_env *env)
 	SDL_FreeSurface(env->surf);
 	SDL_RenderCopy(env->ren, env->titlep1, NULL, &env->rectnamep1);
 	env->namep2 = ft_strjoin("P2 : ", ft_strtoupper(env->p2));
+	ft_strdel(&env->p2);
 	ft_pick_color(env, 233, 139, 57);
 	ft_original_draw2(env);
 }

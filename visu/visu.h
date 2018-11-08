@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:21:25 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 11:44:30 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 15:16:42 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ typedef struct	s_env
 	int				width_map;
 	int				height_map;
 	int				**map;
-	int				**piece;
 }				t_env;
 
 int				ft_quit_all(t_env *env);
@@ -89,5 +88,6 @@ void			ft_draw_piece(t_env *env);
 void			send_rect_to_fill(t_env *env, int i, int j, int color);
 void			ft_actualize_score(t_env *env);
 void			ft_print_winner(t_env *env);
+void			ft_free_piece(t_env *env);
 
 #endif

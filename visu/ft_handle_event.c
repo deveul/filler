@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:51:59 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 13:00:01 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/08 15:49:21 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,21 @@ static int	ft_automatic_play(t_env *env, int ret)
 	{
 		while (ret > 0)
 			ft_play_one_move(env, &ret, 0);
+		env->p.y = -1;
 		return (ret);
 	}
 	else if (env->event.key.keysym.scancode == SDL_SCANCODE_2)
 	{
 		while (ret > 0)
 			ft_play_one_move(env, &ret, 3000000);
+		env->p.y = -1;
 		return (ret);
 	}
 	else if (env->event.key.keysym.scancode == SDL_SCANCODE_1)
 	{
 		while (ret > 0)
 			ft_play_one_move(env, &ret, 10000000);
+		env->p.y = -1;
 		return (ret);
 	}
 	return (ret);
@@ -65,6 +68,7 @@ static int	ft_automatic_play(t_env *env, int ret)
 int			ft_handle_event(t_env *env)
 {
 	int		ret;
+	int		tmp;
 
 	ret = 1;
 	if (env->event.type == SDL_QUIT)
@@ -72,7 +76,12 @@ int			ft_handle_event(t_env *env)
 	if (env->event.type == SDL_KEYDOWN)
 	{
 		if (env->event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
-			return (ft_play_one_move(env, &ret, 0));
+		{
+			tmp = ft_play_one_move(env, &ret, 0);
+			if (tmp < 1)
+				env->p.y = -1;
+			return (tmp);
+		}
 		else
 			return (ft_automatic_play(env, ret));
 	}
