@@ -6,13 +6,13 @@
 #    By: vrenaudi <urenaudi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/26 14:25:25 by vrenaudi          #+#    #+#              #
-#    Updated: 2018/11/09 13:42:31 by vrenaudi         ###   ########.fr        #
+#    Updated: 2018/11/09 16:50:51 by vrenaudi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 
 NAME = vrenaudi.filler
 
@@ -20,7 +20,6 @@ SRCS = main.c \
 	   ft_get_piece.c \
 	   ft_get_map.c \
 	   ft_put_piece.c \
-	   ft_print_infos.c \
 	   ft_estimate_value.c \
 	   ft_get_oppocpt.c
 

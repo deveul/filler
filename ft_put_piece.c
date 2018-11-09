@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:57:29 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/09 12:51:55 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 16:53:26 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,11 @@ static void		ft_update_values(t_filler *f, t_piece *p
 	if ((ft_check_pos(f, p, sort->y, sort->x)) == 1)
 	{
 		sort->value = ft_estimate_value(f, p, *sort, pts);
-		if (sort->trigger++ == 0)
+		if (sort->trigger == 0)
 		{
 			sort->current = sort->x + (f->c * sort->y);
 			sort->best = sort->value;
+			sort->trigger++;
 		}
 		else if (sort->value > sort->best)
 		{
