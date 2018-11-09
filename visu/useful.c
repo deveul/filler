@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:16:18 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 15:54:23 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 10:50:30 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,13 @@ void			send_rect_to_fill(t_env *env, int i, int j, int color)
 	SDL_RenderDrawRect(env->ren, &rectangle);
 }
 
-void			ft_actualize_score(t_env *env)
+static void		ft_actualize_score_p2(t_env *env)
 {
-	ft_pick_color(env, 53, 75, 96);
-	env->score = ft_strjoin("P1 : ", ft_itoa(env->cptp2));
-	env->surf = TTF_RenderText_Blended(env->font, env->score, env->color);
-	ft_strdel(&env->score);
-	env->originalscore = SDL_CreateTextureFromSurface(env->ren, env->surf);
-	env->rectoriscore.w = env->surf->w;
-	env->rectoriscore.h = env->surf->h;
-	env->rectoriscore.x = WIDTH * 1.2;
-	env->rectoriscore.y = HEIGHT * 0.85;
-	SDL_FreeSurface(env->surf);
-	env->surf = NULL;
-	SDL_RenderCopy(env->ren, env->originalscore, NULL, &env->rectoriscore);
+	char	*tmp;
+
 	ft_pick_color(env, 233, 139, 57);
-	env->score = ft_strjoin("P2 : ", ft_itoa(env->cptp1));
+	tmp = ft_itoa(env->cptp1);
+	env->score = ft_strjoinfreesec("P2 : ", tmp);
 	env->surf = TTF_RenderText_Blended(env->font, env->score, env->color);
 	ft_strdel(&env->score);
 	env->originalscore = SDL_CreateTextureFromSurface(env->ren, env->surf);
@@ -66,6 +57,24 @@ void			ft_actualize_score(t_env *env)
 	env->rectoriscore.x = WIDTH * 1.2;
 	env->rectoriscore.y = HEIGHT * 0.9;
 	SDL_FreeSurface(env->surf);
-	env->surf = NULL;
 	SDL_RenderCopy(env->ren, env->originalscore, NULL, &env->rectoriscore);
+}
+
+void			ft_actualize_score(t_env *env)
+{
+	char	*tmp;
+
+	ft_pick_color(env, 53, 75, 96);
+	tmp = ft_itoa(env->cptp2);
+	env->score = ft_strjoinfreesec("P1 : ", tmp);
+	env->surf = TTF_RenderText_Blended(env->font, env->score, env->color);
+	ft_strdel(&env->score);
+	env->originalscore = SDL_CreateTextureFromSurface(env->ren, env->surf);
+	env->rectoriscore.w = env->surf->w;
+	env->rectoriscore.h = env->surf->h;
+	env->rectoriscore.x = WIDTH * 1.2;
+	env->rectoriscore.y = HEIGHT * 0.85;
+	SDL_FreeSurface(env->surf);
+	SDL_RenderCopy(env->ren, env->originalscore, NULL, &env->rectoriscore);
+	ft_actualize_score_p2(env);
 }

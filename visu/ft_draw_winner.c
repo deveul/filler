@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 11:22:02 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 15:53:58 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 10:45:50 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void		ft_print_winner2(t_env *env)
 {
 	env->surf = TTF_RenderText_Blended(env->font, env->winner, env->color);
+	ft_strdel(&env->winner);
 	env->txtwinner = SDL_CreateTextureFromSurface(env->ren, env->surf);
 	env->rectwinner.w = env->surf->w;
 	env->rectwinner.h = env->surf->h;

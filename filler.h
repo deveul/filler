@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 12:23:24 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/07 19:45:48 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 11:10:00 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_sort
 	int			trigger;
 }				t_sort;
 
+void			ft_get_oppocpt(t_filler *f);
 void			ft_print_infos(t_filler *f, t_piece *p);
 int				ft_get_map(t_filler *f, char *line);
 int				ft_get_piece(t_filler *f, t_piece *p, char *line);

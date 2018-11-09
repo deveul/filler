@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:27:31 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 14:07:39 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 10:36:24 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int			ft_init_env(t_env *env, int *is_running)
 				return (-1);
 		if (ft_strstr(line, "Plateau"))
 			ft_get_tray(env, line);
+		ft_strdel(&line);
 		if (env->height_map != -1)
 			i = 0;
 	}
