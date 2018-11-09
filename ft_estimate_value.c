@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 11:53:05 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/09 17:03:22 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 17:07:03 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,14 @@ static int	ft_measure(t_point *pts, t_sort pt, t_point ij, int oppocpt)
 	int		cpt;
 	int		ret;
 	int		tmp;
-//	int		trigger;
 
 	cpt = 0;
 	ret = -1;
-//	trigger = 0;
 	while (cpt < oppocpt)
 	{
 		tmp = ft_calculate_tmp(pts, cpt, ij, pt);
 		if (ret == -1)
-		{
-		//	trigger = 1;
 			ret = tmp;
-		}
 		else if (tmp < ret)
 			ret = tmp;
 		cpt++;
