@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:21:25 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 15:16:42 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/09 14:33:22 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int				ft_handle_event(t_env *env);
 int				ft_get_current_piece(t_piece *p, char *line, int color);
 int				ft_next_move(t_env *env);
 void			ft_original_draw(t_env *env);
-void			ft_pick_color(t_env *env, int  r, int g, int b);
+void			ft_pick_color(t_env *env, int r, int g, int b);
 void			ft_draw_piece(t_env *env);
 void			send_rect_to_fill(t_env *env, int i, int j, int color);
 void			ft_actualize_score(t_env *env);
