@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:27:31 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/12 10:42:56 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/12 11:02:58 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,16 @@ static int	ft_is_there_players(t_env *env, char *line)
 
 	if (ft_strstr(line, "exec p1"))
 		if ((ret = ft_get_player(env, line, 1)) == -1)
+		{
+			ft_strdel(&line);
 			return (-1);
+		}
 	if (ft_strstr(line, "exec p2"))
 		if ((ret = ft_get_player(env, line, 2)) == -1)
+		{
+			ft_strdel(&line);
 			return (-1);
+		}
 	return (1);
 }
 
@@ -83,6 +89,7 @@ int			ft_init_env(t_env *env, int *is_running)
 		if (ft_strstr(line, "error") && !ft_strstr(line, "exec"))
 		{
 			ft_printf("error detected by the VM.\n");
+			ft_strdel(&line);
 			return (-1);
 		}
 		if ((ret = ft_is_there_players(env, line)) == -1)

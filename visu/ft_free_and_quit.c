@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:03:42 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 16:01:24 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/12 11:28:25 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int				ft_quit_all_neg(t_env *env)
 	TTF_CloseFont(env->font);
 	SDL_DestroyRenderer(env->ren);
 	SDL_DestroyWindow(env->win);
+	SDL_VideoQuit();
+	SDL_QuitSubSystem(SDL_INIT_VIDEO);
 	SDL_Quit();
 	return (-1);
 }
@@ -67,6 +69,8 @@ int				ft_quit_all(t_env *env)
 	TTF_CloseFont(env->font);
 	SDL_DestroyRenderer(env->ren);
 	SDL_DestroyWindow(env->win);
+	SDL_VideoQuit();
+	SDL_QuitSubSystem(SDL_INIT_VIDEO);
 	SDL_Quit();
 	return (0);
 }
