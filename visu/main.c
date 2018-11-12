@@ -6,16 +6,15 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 13:41:50 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/08 15:45:29 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/12 10:32:19 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-static int	ft_init_visu(t_env *env, int *fd, int *is_running)
+static int	ft_init_visu(t_env *env, int *is_running)
 {
 	*(is_running) = 1;
-	*(fd) = open("salut", O_CREAT | O_RDWR, 0777);
 	env->p.col = 1;
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -76,25 +75,25 @@ int			main(void)
 {
 	t_env		env;
 	int			is_running;
-	int			fd;
+	int			ret;
 
-	if (ft_init_visu(&env, &fd, &is_running) == -1)
+	if (ft_init_visu(&env, &is_running) == -1)
 		return (-1);
 	ft_init_string_and_piece(&env);
 	while (is_running)
 	{
 		if (is_running == 1)
-			if (ft_init_env(&env, &is_running) == -1)
+			if ((ret = ft_init_env(&env, &is_running)) == -1)
 				return (ft_quit_all_neg(&env));
 		if (is_running == 2)
 		{
-			if (ft_first_parsing(&env, &is_running) == -1)
+			if ((ret = ft_first_parsing(&env, &is_running)) == -1)
 				return (ft_quit_all_neg(&env));
 			ft_original_draw(&env);
 		}
 		else if (is_running == 3)
 		{
-			if (ft_run_game(&env, &is_running) == -1)
+			if ((ret = ft_run_game(&env, &is_running)) == -1)
 				return (ft_quit_all_neg(&env));
 		}
 	}
