@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/12 11:30:33 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/12 17:45:14 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		ft_free_piece(t_piece *p)
 	free(p->spiece);
 }
 
-static void		ft_first_read(t_filler *f, char *line)
+static int		ft_first_read(t_filler *f, char *line)
 {
 	if (ft_strstr(line, "p2"))
 	{
@@ -45,7 +45,13 @@ static void		ft_first_read(t_filler *f, char *line)
 		f->mine = 1;
 		f->other = 2;
 	}
+	else
+	{
+		ft_strdel(&line);
+		return (-1);
+	}
 	ft_strdel(&line);
+	return (0);
 }
 
 int				ft_play(t_filler *f, char *line)
@@ -87,7 +93,10 @@ int				main(void)
 		if (get_next_line(0, &line) > 0)
 		{
 			if (f.mine == 0)
-				ft_first_read(&f, line);
+			{
+				if (ft_first_read(&f, line) == -1)
+					return (-1);
+			}
 			else
 			{
 				if (ft_play(&f, line) == 0)

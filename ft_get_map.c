@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:13:46 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/05 20:20:09 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/12 17:54:14 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int		ft_allocate_map(t_filler *f, char *line)
 
 	i = 0;
 	cpt = 8;
+	if (!ft_strstr(line, "Plateau"))
+		return (-1);
 	f->l = ft_atoi(line + cpt);
 	while (ft_isdigit(line[cpt]))
 		cpt++;
@@ -35,7 +37,7 @@ static int		ft_allocate_map(t_filler *f, char *line)
 	return (1);
 }
 
-static void		ft_fill_map(t_filler *f)
+static int		ft_fill_map(t_filler *f)
 {
 	int		i;
 	int		j;
@@ -46,6 +48,8 @@ static void		ft_fill_map(t_filler *f)
 	while (i < f->l)
 	{
 		get_next_line(0, &line);
+		if (ft_strlen(line != f->c + 4))
+			return (-1);
 		j = 0;
 		while (j < f->c)
 		{
@@ -62,6 +66,7 @@ static void		ft_fill_map(t_filler *f)
 		ft_strdel(&line);
 		i++;
 	}
+	return (1);
 }
 
 int				ft_get_map(t_filler *f, char *line)
@@ -76,6 +81,7 @@ int				ft_get_map(t_filler *f, char *line)
 	if (!(get_next_line(0, &line)))
 		return (-1);
 	ft_strdel(&line);
-	ft_fill_map(f);
+	if (ft_fill_map(f) == -1)
+		return (-1);
 	return (1);
 }
