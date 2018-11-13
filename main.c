@@ -6,16 +6,16 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/12 17:45:14 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/13 15:38:59 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <fcntl.h>
 
+
 static void		ft_init_filler(t_filler *f)
 {
-	f->fd = open("error", O_RDWR);
 	f->mine = 0;
 	f->l = 0;
 	f->c = 0;
@@ -35,12 +35,12 @@ static void		ft_free_piece(t_piece *p)
 
 static int		ft_first_read(t_filler *f, char *line)
 {
-	if (ft_strstr(line, "p2"))
+	if (ft_strstr(line, "exec p2 :") && ft_strstr(line, "vrenaudi.filler"))
 	{
 		f->mine = 2;
 		f->other = 1;
 	}
-	else if (ft_strstr(line, "p1"))
+	else if (ft_strstr(line, "exec p1 :") && ft_strstr(line, "vrenaudi.filler"))
 	{
 		f->mine = 1;
 		f->other = 2;
@@ -85,6 +85,7 @@ int				main(void)
 	t_filler	f;
 	char		*line;
 	int			i;
+	int			ret;
 
 	ft_init_filler(&f);
 	i = 0;
@@ -99,15 +100,22 @@ int				main(void)
 			}
 			else
 			{
-				if (ft_play(&f, line) == 0)
+				ret = ft_play(&f, line);
+				if (ret == 0)
 				{
 					while (i < f.l)
 						free(f.maps[i++]);
 					free(f.maps);
 					return (0);
 				}
+				else if (ret == -1)
+					return (-1);
 			}
 		}
 	}
 	return (0);
 }
+//remove fd avant de push
+//check comment la vm se comporte avec une map de 1000/1000
+//check avec mauvaise dimension de plateau
+//free quand pb de parsing

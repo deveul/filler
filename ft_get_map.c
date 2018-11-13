@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:13:46 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/12 17:54:14 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/13 13:39:50 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ static int		ft_allocate_map(t_filler *f, char *line)
 	cpt = 8;
 	if (!ft_strstr(line, "Plateau"))
 		return (-1);
+	if (ft_strlen(line) < (size_t)cpt)
+		return (-1);
 	f->l = ft_atoi(line + cpt);
 	while (ft_isdigit(line[cpt]))
 		cpt++;
+	if (!line[cpt])
+		return (-1);
 	f->c = ft_atoi(line + (cpt + 1));
+	if (f->c == 0 || f->l == 0)
+		return (-1);
 	if (!(f->maps = ft_memalloc(sizeof(int*) * f->l)))
 		return (-1);
 	while (i < f->l)
@@ -47,8 +53,9 @@ static int		ft_fill_map(t_filler *f)
 	line = NULL;
 	while (i < f->l)
 	{
-		get_next_line(0, &line);
-		if (ft_strlen(line != f->c + 4))
+		if (get_next_line(0, &line) < 1)
+			return (-1);
+		if (ft_strlen(line) != (size_t)f->c + 4)
 			return (-1);
 		j = 0;
 		while (j < f->c)
@@ -78,7 +85,7 @@ int				ft_get_map(t_filler *f, char *line)
 	}
 	else
 		ft_strdel(&line);
-	if (!(get_next_line(0, &line)))
+	if (get_next_line(0, &line) < 1)
 		return (-1);
 	ft_strdel(&line);
 	if (ft_fill_map(f) == -1)

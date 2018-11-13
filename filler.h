@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 12:23:24 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/12 10:48:38 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/13 15:39:08 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct	s_filler
 	int			l;
 	int			c;
 	int			**maps;
-	int			fd;
 	int			oppocpt;
 	int			prev_cpt;
 }				t_filler;
