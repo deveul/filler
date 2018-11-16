@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/16 10:53:04 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/16 15:14:14 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		ft_init_filler(t_filler *f)
 	f->prev_cpt = -1;
 }
 
-static void		ft_free_piece(t_piece *p)
+static void		ft_free_spiece(t_piece *p)
 {
 	int		i;
 
@@ -43,7 +43,6 @@ static int		ft_first_read(t_filler *f, char *line)
 		f->mine = 2;
 		f->other = 1;
 	}
-
 	else
 	{
 		ft_strdel(&line);
@@ -66,7 +65,7 @@ int				ft_play(t_filler *f, char *line)
 	if ((pos = ft_put_piece(f, &p)) == -1)
 	{
 		ft_printf("0 0");
-		ft_free_piece(&p);
+		ft_free_spiece(&p);
 		return (0);
 	}
 	else
@@ -74,7 +73,7 @@ int				ft_play(t_filler *f, char *line)
 		point.x = pos % f->c - p.xmin;
 		point.y = pos / f->c - p.ymin;
 		ft_printf("%d %d\n", point.y, point.x);
-		ft_free_piece(&p);
+		ft_free_spiece(&p);
 	}
 	return (1);
 }
@@ -125,5 +124,3 @@ int				main(void)
 }
 //remove fd avant de push
 //check comment la vm se comporte avec une map de 1000/1000
-//check avec mauvaise dimension de plateau
-//free quand pb de parsing

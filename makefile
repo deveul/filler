@@ -6,7 +6,7 @@
 #    By: vrenaudi <urenaudi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/26 14:25:25 by vrenaudi          #+#    #+#              #
-#    Updated: 2018/11/16 11:23:27 by vrenaudi         ###   ########.fr        #
+#    Updated: 2018/11/16 15:07:17 by vrenaudi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS = main.c \
 	   ft_get_map.c \
 	   ft_put_piece.c \
 	   ft_estimate_value.c \
-	   ft_get_oppocpt.c
+	   ft_get_oppocpt.c \
+	   ft_free_and_return.c \
+	   ft_get_extreme.c
 
 OBJ = $(SRCS:.c=.o)
 

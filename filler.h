@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 12:23:24 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/13 15:39:08 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/16 15:08:07 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ int				ft_get_piece(t_filler *f, t_piece *p, char *line);
 int				ft_put_piece(t_filler *f, t_piece *p);
 int				ft_estimate_value(t_filler *f, t_piece *p, \
 		t_sort pt, t_point *pts);
+int				ft_free_and_return(char *line);
+int				ft_get_extreme(t_piece *p, char *line);
+void			ft_free_piece(t_piece *piece);
 
 #endif
