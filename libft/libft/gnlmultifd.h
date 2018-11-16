@@ -6,7 +6,7 @@
 /*   By: vrenaudi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 11:19:05 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/14 16:53:21 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/14 11:42:56 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <unistd.h>
 
 # define BUFF_SIZE 1
+
+typedef struct		s_data
+{
+	char			*str;
+	int				fd;
+}					t_data;
 
 int					get_next_line(const int fd, char **line);
 

@@ -6,13 +6,11 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/13 15:38:59 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/16 10:53:04 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <fcntl.h>
-
 
 static void		ft_init_filler(t_filler *f)
 {
@@ -35,16 +33,17 @@ static void		ft_free_piece(t_piece *p)
 
 static int		ft_first_read(t_filler *f, char *line)
 {
-	if (ft_strstr(line, "exec p2 :") && ft_strstr(line, "vrenaudi.filler"))
-	{
-		f->mine = 2;
-		f->other = 1;
-	}
-	else if (ft_strstr(line, "exec p1 :") && ft_strstr(line, "vrenaudi.filler"))
+	if (ft_strstr(line, "exec p1 :") && ft_strstr(line, "vrenaudi.filler"))
 	{
 		f->mine = 1;
 		f->other = 2;
 	}
+	else if (ft_strstr(line, "exec p2 :") && ft_strstr(line, "vrenaudi.filler"))
+	{
+		f->mine = 2;
+		f->other = 1;
+	}
+
 	else
 	{
 		ft_strdel(&line);
@@ -106,10 +105,19 @@ int				main(void)
 					while (i < f.l)
 						free(f.maps[i++]);
 					free(f.maps);
+					//sleep(10);
 					return (0);
 				}
 				else if (ret == -1)
+				{
+					if (f.l != 0)
+					{
+						while (i < f.l)
+							free(f.maps[i++]);
+						free(f.maps);
+					}
 					return (-1);
+				}
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 15:51:53 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/13 13:29:15 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/14 18:34:27 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,21 @@ static int	ft_allocate_piece(t_piece *p, char *line)
 		return (-1);
 	if (!ft_strstr(line, "Piece"))
 			return (-1);
-	while (!(ft_isdigit(line[cpt])))
-		cpt++;
-	if (ft_strlen(line) < (size_t)cpt)
-		return (-1);
-	p->height = ft_atoi(line + cpt);
-	while (ft_isdigit(line[cpt]))
+	while (line[cpt] && !(ft_isdigit(line[cpt])))
 		cpt++;
 	if (!line[cpt])
+	{
+		ft_strdel(&line);
 		return (-1);
+	}
+	p->height = ft_atoi(line + cpt);
+	while (line[cpt] && ft_isdigit(line[cpt]))
+		cpt++;
+	if (!line[cpt])
+	{
+		ft_strdel(&line);
+		return (-1);
+	}
 	p->width = ft_atoi(line + (cpt + 1));
 	ft_strdel(&line);
 	if (p->height == 0 || p->width == 0)

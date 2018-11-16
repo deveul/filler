@@ -6,11 +6,45 @@
 /*   By: vrenaudi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 12:18:19 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/14 16:55:54 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/14 16:40:31 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static void	ft_free_all(void *tofree, size_t useless)
+{
+	(void)useless;
+	ft_strdel(&(((t_data*)tofree)->str));
+	free(tofree);
+	tofree = NULL;
+}
+
+static int	ft_lstrmone(t_list **b, t_list *to_del, void (*del)(void *, size_t))
+{
+	t_list *previous;
+	t_list *current;
+
+	current = *b;
+	if (current == to_del)
+	{
+		*b = current->next;
+		ft_lstdelone(&current, del);
+		return (0);
+	}
+	while (current->next)
+	{
+		previous = current;
+		current = current->next;
+		if (current == to_del)
+		{
+			previous->next = current->next;
+			ft_lstdelone(&current, del);
+			return (0);
+		}
+	}
+	return (0);
+}
 
 static char	*ft_streraseuntilc(char *src, char c)
 {
@@ -39,14 +73,47 @@ static char	*ft_streraseuntilc(char *src, char c)
 	return (new);
 }
 
+t_list		*ft_block_of_fd(t_list **begin, const int fd)
+{
+	t_list	*news;
+	t_list	*tmp;
+	t_data	*data;
+
+	if (!(*begin))
+	{
+		*begin = ft_lstnew(&data, sizeof(t_data));
+		tmp = *begin;
+		((t_data*)tmp->content)->fd = fd;
+		((t_data*)tmp->content)->str = NULL;
+		return (tmp);
+	}
+	tmp = *begin;
+	while (tmp && tmp->content)
+	{
+		if (((t_data*)tmp->content)->fd == fd)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	if ((news = ft_lstnew(&data, sizeof(t_data))) == NULL)
+		return (NULL);
+	ft_lstadd(begin, news);
+	((t_data*)news->content)->fd = fd;
+	((t_data*)news->content)->str = NULL;
+	return (news);
+}
+
 int			get_next_line(const int fd, char **line)
 {
 	int				ret;
 	char			buf[BUFF_SIZE + 1];
-	static char		*str = NULL;
+	static t_list	*begin = NULL;
+	t_list			*tmp;
+	char			*str;
 
-	if ((fd < 0 || read(fd, buf, 0) < 0) || !line)
+	if ((fd < 0 || read(fd, buf, 0) < 0) || !line
+			|| !(((tmp = ft_block_of_fd(&begin, fd)))))
 		return (-1);
+	str = ((t_data*)tmp->content)->str;
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
@@ -56,7 +123,7 @@ int			get_next_line(const int fd, char **line)
 			break ;
 	}
 	if ((ret < BUFF_SIZE && (!str || !ft_strlen(str))))
-		return (0);
+		return (ft_lstrmone(&begin, tmp, &ft_free_all));
 	if (!(*line = ft_strndup(str, ft_strlenuntilc(str, '\n')))
 			|| !(str = ft_streraseuntilc(str, '\n')))
 		return (-1);
