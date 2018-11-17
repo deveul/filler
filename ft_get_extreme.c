@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 15:03:23 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/16 15:10:45 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/17 12:29:39 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_replace_value(t_piece *p, int i, int j)
 		ft_free_piece(p);
 		return (-1);
 	}
-	if (p->xmin == -1)
+	if (p->xmin == -1 && p->piece[i][j] == '*')
 	{
 		p->xmin = j;
 		p->ymin = i;
