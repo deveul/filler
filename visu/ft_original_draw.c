@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 11:29:57 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/12 10:09:38 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/17 11:03:07 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_draw_map_rectangle(t_env *env, int i, int j)
 	}
 	if (env->map[i][j] == 3)
 	{
-		SDL_SetRenderDrawColor(env->ren, 233, 139, 57, 255);
+		SDL_SetRenderDrawColor(env->ren, 163, 177, 178, 255);
 		SDL_RenderFillRect(env->ren, &rectangle);
 	}
 	SDL_SetRenderDrawColor(env->ren, 163, 177, 178, 255);
