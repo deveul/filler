@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/16 15:14:14 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/17 11:00:55 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,11 @@ int				main(void)
 					while (i < f.l)
 						free(f.maps[i++]);
 					free(f.maps);
-					//sleep(10);
 					return (0);
 				}
 				else if (ret == -1)
 				{
-					if (f.l != 0)
+					if (f.l != 0 && f.l < 1000)
 					{
 						while (i < f.l)
 							free(f.maps[i++]);
@@ -122,5 +121,3 @@ int				main(void)
 	}
 	return (0);
 }
-//remove fd avant de push
-//check comment la vm se comporte avec une map de 1000/1000

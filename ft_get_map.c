@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:13:46 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/16 14:52:44 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/17 11:00:56 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static int		ft_get_map_size(t_filler *f, char *line)
 	if (!line[cpt])
 		return (ft_free_and_return(line));
 	f->c = ft_atoi(line + (cpt));
-	if (f->c == 0 || f->l == 0)
+	ft_strdel(&line);
+	if (f->c == 0 || f->l == 0 || f->l > 999)
 		return (-1);
 	if (ft_allocate_map(f) == -1)
 		return (-1);
-	ft_strdel(&line);
 	return (1);
 }
 
