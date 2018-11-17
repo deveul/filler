@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:39:54 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/17 11:00:55 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/17 11:28:23 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ static void		ft_init_filler(t_filler *f)
 	f->c = 0;
 	f->oppocpt = 0;
 	f->prev_cpt = -1;
-}
-
-static void		ft_free_spiece(t_piece *p)
-{
-	int		i;
-
-	i = 0;
-	while (i < p->y)
-		free(p->spiece[i++]);
-	free(p->spiece);
 }
 
 static int		ft_first_read(t_filler *f, char *line)
@@ -78,15 +68,39 @@ int				ft_play(t_filler *f, char *line)
 	return (1);
 }
 
+static int		ft_analyze_ret(t_filler *f, int ret)
+{
+	int			i;
+
+	i = 0;
+	if (ret == 0)
+	{
+		while (i < f->l)
+			free(f->maps[i++]);
+		free(f->maps);
+		return (0);
+	}
+	else if (ret == -1)
+	{
+		if (f->l != 0 && f->l < 1000)
+		{
+			while (i < f->l)
+				free(f->maps[i++]);
+			free(f->maps);
+		}
+		return (-1);
+	}
+	return (1);
+}
+
 int				main(void)
 {
 	t_filler	f;
 	char		*line;
-	int			i;
 	int			ret;
+	int			tmp;
 
 	ft_init_filler(&f);
-	i = 0;
 	while (1)
 	{
 		if (get_next_line(0, &line) > 0)
@@ -98,24 +112,9 @@ int				main(void)
 			}
 			else
 			{
-				ret = ft_play(&f, line);
-				if (ret == 0)
-				{
-					while (i < f.l)
-						free(f.maps[i++]);
-					free(f.maps);
-					return (0);
-				}
-				else if (ret == -1)
-				{
-					if (f.l != 0 && f.l < 1000)
-					{
-						while (i < f.l)
-							free(f.maps[i++]);
-						free(f.maps);
-					}
-					return (-1);
-				}
+				tmp = ft_play(&f, line);
+				if ((ret = ft_analyze_ret(&f, tmp)) < 1)
+					return (ret);
 			}
 		}
 	}

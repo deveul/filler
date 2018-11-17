@@ -6,7 +6,7 @@
 /*   By: vrenaudi <vrenaudi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 12:23:24 by vrenaudi          #+#    #+#             */
-/*   Updated: 2018/11/17 10:48:32 by vrenaudi         ###   ########.fr       */
+/*   Updated: 2018/11/17 11:12:49 by vrenaudi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int				ft_estimate_value(t_filler *f, t_piece *p, \
 int				ft_free_and_return(char *line);
 int				ft_get_extreme(t_piece *p, char *line);
 void			ft_free_piece(t_piece *piece);
+void			ft_free_spiece(t_piece *piece);
 
 #endif
